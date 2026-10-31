@@ -1,0 +1,16 @@
+import type { ReactNode } from 'react'
+
+interface PageHeaderProps { eyebrow?: string; title: string; description: string; trailing?: ReactNode }
+
+export function PageHeader({ eyebrow, title, description, trailing }: PageHeaderProps) {
+  return (
+    <div className="page-header">
+      <div>
+        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+        <h1>{title}</h1>
+        <p className="page-header__description">{description}</p>
+      </div>
+      {trailing && <div className="page-header__trailing">{trailing}</div>}
+    </div>
+  )
+}
