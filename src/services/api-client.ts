@@ -119,7 +119,7 @@ export class ApiError extends Error {
   }
 }
 
-const baseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000').replace(/\/$/, '')
+const baseUrl = (import.meta.env.VITE_API_BASE_URL ?? 'https://tiktokapi.zimpy.in').replace(/\/$/, '')
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
   const timeoutSignal = AbortSignal.timeout(10_000)
