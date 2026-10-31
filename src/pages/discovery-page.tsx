@@ -4,7 +4,6 @@ import { AlertTriangle, ArrowRight, LoaderCircle, Search } from 'lucide-react'
 import { ApiError, createSearchJob } from '../services/api-client'
 import type { SearchCriteria } from '../services/api-client'
 import { useApiStatus } from '../app/api-status-context'
-import { PageHeader } from '../components/common/page-header'
 import { Surface } from '../components/common/surface'
 
 interface FormValues {
