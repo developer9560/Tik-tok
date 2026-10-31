@@ -10,7 +10,6 @@ const DiscoveryPage = lazy(() => import('../pages/discovery-page'))
 const JobPage = lazy(() => import('../pages/job-page'))
 const VideoDetailPage = lazy(() => import('../pages/video-detail-page'))
 const HistoryPage = lazy(() => import('../pages/history-page'))
-const LibraryPage = lazy(() => import('../pages/library-page'))
 const SettingsPage = lazy(() => import('../pages/settings-page'))
 const NotFoundPage = lazy(() => import('../pages/not-found-page'))
 
@@ -33,7 +32,6 @@ export const router = createBrowserRouter([
       { path: 'jobs/:jobId', element: lazyPage(<JobPage />) },
       { path: 'videos/:videoId', element: lazyPage(<VideoDetailPage />) },
       { path: 'history', element: lazyPage(<HistoryPage />) },
-      { path: 'library', element: lazyPage(<LibraryPage />) },
       { path: 'settings', element: lazyPage(<SettingsPage />) },
       { path: '*', element: lazyPage(<NotFoundPage />) },
     ],

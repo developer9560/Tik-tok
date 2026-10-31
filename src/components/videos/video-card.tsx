@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Bookmark, ExternalLink, Eye, Heart, MessageCircle, Share2 } from 'lucide-react'
+import { Bookmark, ExternalLink, Eye, Heart, MessageCircle, Play, Share2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import type { VideoResult } from '../../services/api-client'
 
@@ -24,6 +24,7 @@ export function VideoCard({ video }: { video: VideoResult }) {
         {video.thumbnail_url && !thumbnailFailed
           ? <img alt="Video thumbnail" loading="lazy" onError={() => setThumbnailFailed(true)} src={video.thumbnail_url} />
           : <span>Thumbnail unavailable</span>}
+        <span aria-hidden="true" className="video-card__play"><Play fill="currentColor" size={17} /></span>
       </div>
       <div className="video-card__body">
         <div className="video-card__meta">
@@ -31,7 +32,13 @@ export function VideoCard({ video }: { video: VideoResult }) {
           <time>{date(video.upload_date)}</time>
         </div>
         <h3 className="video-card__title">{video.description || 'No description provided by TikTok'}</h3>
-        <p className="video-card__creator">{video.creator_username ? `@${video.creator_username}` : 'Creator unavailable'}</p>
+        <div className="video-card__creator">
+          {video.creator_avatar_url
+            ? <img alt="" loading="lazy" onError={(event) => { event.currentTarget.hidden = true }} src={video.creator_avatar_url} />
+            : <span aria-hidden="true" className="video-card__creator-fallback">{video.creator_username?.slice(0, 1).toUpperCase() || '?'}</span>}
+          <span>{video.creator_username ? `@${video.creator_username}` : 'Creator unavailable'}</span>
+          {video.region && <span className="video-card__region">{video.region}</span>}
+        </div>
         <div className="video-card__metrics">
           <span><Eye size={14} />{count(video.views)} views</span>
           <span><Heart size={14} />{count(video.likes)} likes</span>

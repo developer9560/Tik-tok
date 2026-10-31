@@ -23,7 +23,7 @@ npm run build
 
 ## Search results
 
-- Routes: Overview, New discovery, Search history, Video library, and Connections.
+- Routes: Overview, New discovery, Search history, and Connections. Video results remain available from each search job.
 - The Connections page and top bar read the real `GET /api/health` and `GET /api/brightdata/config` contracts.
 - The search-job page reads persisted video decisions through the backend API. Select **All collected**, **Matching**, **Unverified**, or **Rejected** to inspect the corresponding `search_job_videos` rows; all collected decisions are shown by default.
 - CSV and JSON exports use the selected decision filter and search text. JSON exports download as `.json` files.

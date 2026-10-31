@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { Activity, Archive, Clapperboard, Compass, Layers3, Settings2, X } from 'lucide-react'
+import { Activity, Archive, Compass, Layers3, Settings2, X } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 interface NavigationItem { label: string; to: string; icon: LucideIcon }
@@ -8,7 +8,6 @@ const primaryNavigation: NavigationItem[] = [
   { label: 'Overview', to: '/', icon: Layers3 },
   { label: 'New discovery', to: '/discovery', icon: Compass },
   { label: 'Search history', to: '/history', icon: Archive },
-  { label: 'Video library', to: '/library', icon: Clapperboard },
 ]
 
 function NavigationLinks({ onNavigate }: { onNavigate?: () => void }) {

@@ -8,7 +8,6 @@ const routeNames: Record<string, string> = {
   '/': 'Overview',
   '/discovery': 'New discovery',
   '/history': 'Search history',
-  '/library': 'Video library',
   '/settings': 'Connections',
 }
 

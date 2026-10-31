@@ -22,11 +22,11 @@ const initialValues: FormValues = {
   keyword: '',
   category: '',
   minViews: '500',
-  maxViews: '500000',
-  minAgeDays: '2',
+  maxViews: ' ',
+  minAgeDays: '5',
   language: 'ru',
   languageRequirement: 'spoken',
-  targetCount: '500',
+  targetCount: '300',
 }
 
 function parseOptionalNumber(value: string): number | null {
@@ -90,7 +90,11 @@ export default function DiscoveryPage() {
 
   return (
     <div className="page-stack page-stack--narrow">
-      <PageHeader eyebrow="NEW DISCOVERY" title="Build a precise search." description="Search by keyword, then let the backend evaluate each returned video against your criteria." />
+      {/* <PageHeader eyebrow="NEW DISCOVERY" title="Build a precise search." description="Search by keyword, then let the backend evaluate each returned video against your criteria." /> */}
+      <div>
+        <h1 className="font-bold text-2xl">New discovery</h1>
+        <p className="page-header__description">Search by keyword, then let the backend evaluate each returned video against your criteria.</p>
+      </div>
       <Surface className="search-form-surface">
         <div className="form-intro">
           <span className="form-intro__icon"><Search size={19} /></span>
@@ -125,7 +129,14 @@ export default function DiscoveryPage() {
             <p><strong>Bright Data is not configured.</strong> New searches would fail. Set <code>BRIGHTDATA_API_TOKEN</code> in the backend process environment and restart the API. No <code>.env</code> file is read. See <Link to="/settings">Connections</Link> for status.</p>
           </div>
         )}
-        <form className="search-form" noValidate onSubmit={onSubmit}>
+        {submitting && (
+          <div className="form-note form-note--neutral discovery-submit-status" role="status" aria-live="polite">
+            <LoaderCircle aria-hidden="true" className="button-spinner" size={17} />
+            <p><strong>Creating your search.</strong> The backend is accepting your request; the live collection status will open as soon as the job is created.</p>
+          </div>
+        )}
+        <form aria-busy={submitting} className="search-form" noValidate onSubmit={onSubmit}>
+          <fieldset className="search-form__fields" disabled={submitting}>
           <div className="form-field form-field--wide">
             <label htmlFor="keyword">Search keyword <span className="required-mark">*</span></label>
             <input autoComplete="off" autoFocus id="keyword" maxLength={200} onChange={(event) => update('keyword', event.target.value)} placeholder="e.g. football skills" required value={values.keyword} />
@@ -197,6 +208,7 @@ export default function DiscoveryPage() {
               {submitting ? <><LoaderCircle className="button-spinner" size={16} /> Creating search…</> : <>Start search <ArrowRight size={16} /></>}
             </button>
           </div>
+          </fieldset>
         </form>
       </Surface>
     </div>
